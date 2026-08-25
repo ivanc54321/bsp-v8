@@ -14,10 +14,6 @@ import { Chatbot } from './components/Chatbot';
 import { ReviewCarousel } from './components/ReviewCarousel';
 import onewayImg from './assets/images/regenerated_image_1787659960840.webp';
 
-import blueImg from './assets/blue.jpg';
-import teaImg from './assets/tea.jpg';
-import blackImg from './assets/black.jpg';
-
 // Initialize Stripe
 const stripePromise = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY 
   ? loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY) 
@@ -967,9 +963,9 @@ function Step2({ filmCategory, selectedDesign, setSelectedDesign, onNext, onBack
   ];
 
   const onewayDesigns = [
-    { title: "Silver Blue", desc: "Sleek metallic blue finish. Excellent heat rejection.", imgUrl: blueImg, popular: true },
-    { title: "Bronze Tan", desc: "Warm bronze reflection. Ideal for traditional architecture.", imgUrl: teaImg },
-    { title: "Charcoal Black", desc: "Deep black mirror effect. Maximum glare reduction.", imgUrl: blackImg }
+    { title: "Silver Blue", desc: "Sleek metallic blue finish. Excellent heat rejection.", imgUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800", popular: true },
+    { title: "Bronze Tan", desc: "Warm bronze reflection. Ideal for traditional architecture.", imgUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" },
+    { title: "Charcoal Black", desc: "Deep black mirror effect. Maximum glare reduction.", imgUrl: "https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&q=80&w=800" }
   ];
 
   const designs = filmCategory === 'oneway' ? onewayDesigns : frostedDesigns;
