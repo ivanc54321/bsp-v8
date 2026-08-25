@@ -288,80 +288,83 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
         {/* Background Pattern */}
         <div className="absolute inset-0 z-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
 
+        {/* Animated Header Text (Top Right) */}
+        <motion.div 
+          initial="hidden"
+          animate={isImageLoaded ? "visible" : "hidden"}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.3
+              }
+            }
+          }}
+          className="absolute top-8 right-6 md:top-12 md:right-10 z-20 flex flex-col items-end text-right min-h-[120px]"
+        >
+          <AnimatePresence mode="wait">
+            {carouselStep === 0 && (
+              <motion.div 
+                key="glazing"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-end"
+              >
+                <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-3 uppercase drop-shadow-md text-right">
+                  Static Glazing<br/>
+                  <span className="text-brand-lime drop-shadow-sm">Installation</span>
+                </h1>
+                <div className="w-16 md:w-24 h-1.5 bg-brand-lime rounded-full mb-3 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
+                <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
+                  Window Privacy Film
+                </h2>
+              </motion.div>
+            )}
+            {carouselStep === 1 && (
+              <motion.div 
+                key="areas"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-end"
+              >
+                <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-3 uppercase drop-shadow-md text-right">
+                  Areas <span className="text-brand-lime drop-shadow-sm">Covered</span>
+                </h1>
+                <div className="w-16 md:w-24 h-1.5 bg-brand-lime rounded-full mb-3 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
+                <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
+                  Margate, Broadstairs,<br/>Ramsgate & more
+                </h2>
+              </motion.div>
+            )}
+            {carouselStep === 2 && (
+              <motion.div 
+                key="quick"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-end"
+              >
+                <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-3 uppercase drop-shadow-md text-right">
+                  Quick, Free,<br/>
+                  <span className="text-brand-lime drop-shadow-sm">Simple</span>
+                </h1>
+                <div className="w-16 md:w-24 h-1.5 bg-brand-lime rounded-full mb-3 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
+                <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
+                  Click To Start
+                </h2>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
         {/* Content Section (Bottom Aligned) */}
         <div className="relative z-20 flex flex-col items-center md:items-end justify-end w-full gap-5 mt-auto pt-40 md:pt-20">
-          {/* Animated Header Text */}
-          <motion.div 
-            initial="hidden"
-            animate={isImageLoaded ? "visible" : "hidden"}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.2,
-                  delayChildren: 0.3
-                }
-              }
-            }}
-            className="flex flex-col items-center md:items-end text-center md:text-right w-full min-h-[100px]"
-          >
-            <AnimatePresence mode="wait">
-              {carouselStep === 0 && (
-                <motion.div 
-                  key="glazing"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="flex flex-col items-center md:items-end"
-                >
-                  <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
-                    Static Glazing<br/>
-                    <span className="text-brand-lime drop-shadow-sm">Installation</span>
-                  </h1>
-                  <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase mb-2 drop-shadow-md">
-                    Window Privacy Film
-                  </h2>
-                </motion.div>
-              )}
-              {carouselStep === 1 && (
-                <motion.div 
-                  key="areas"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="flex flex-col items-center md:items-end"
-                >
-                  <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
-                    Areas <span className="text-brand-lime drop-shadow-sm">Covered</span>
-                  </h1>
-                  <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase mb-2 drop-shadow-md">
-                    Margate, Broadstairs,<br/>Ramsgate & more
-                  </h2>
-                </motion.div>
-              )}
-              {carouselStep === 2 && (
-                <motion.div 
-                  key="quick"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="flex flex-col items-center md:items-end"
-                >
-                  <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
-                    Quick, Free,<br/>
-                    <span className="text-brand-lime drop-shadow-sm">Simple</span>
-                  </h1>
-                  <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase mb-2 drop-shadow-md">
-                    Click To Start
-                  </h2>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-
           {/* Action Buttons */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
