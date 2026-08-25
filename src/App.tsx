@@ -300,9 +300,9 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
               }
             }
           }}
-          className="absolute top-2 right-4 md:top-4 md:right-8 z-20 flex flex-col items-end text-right"
+          className="absolute top-4 left-4 right-4 md:left-auto md:top-4 md:right-8 z-20 flex flex-row justify-between items-center md:flex-col md:items-end md:justify-start"
         >
-          <div className="min-h-[95px] md:min-h-[110px] flex flex-col items-end">
+          <div className="min-h-[70px] md:min-h-[110px] flex flex-col justify-center items-start md:items-end">
             <AnimatePresence mode="wait">
               {carouselStep === 0 && (
                 <motion.div 
@@ -311,14 +311,14 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="flex flex-col items-end"
+                  className="flex flex-col items-start md:items-end"
                 >
-                  <h1 className="font-headline text-2xl md:text-3xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md text-right">
+                  <h1 className="font-headline text-lg md:text-3xl font-black text-white tracking-tight leading-[1.05] mb-1 md:mb-2 uppercase drop-shadow-md text-left md:text-right">
                     Static Glazing<br/>
                     <span className="text-brand-lime drop-shadow-sm">Installation</span>
                   </h1>
-                  <div className="w-12 md:w-20 h-1.5 bg-brand-lime rounded-full mb-2 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
-                  <h2 className="font-headline text-[10px] md:text-xs font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
+                  <div className="w-10 md:w-20 h-1 md:h-1.5 bg-brand-lime rounded-full mb-1 md:mb-2 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
+                  <h2 className="font-headline text-[9px] md:text-xs font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-left md:text-right">
                     Window Privacy Film
                   </h2>
                 </motion.div>
@@ -330,13 +330,13 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="flex flex-col items-end"
+                  className="flex flex-col items-start md:items-end"
                 >
-                  <h1 className="font-headline text-2xl md:text-3xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md text-right">
+                  <h1 className="font-headline text-lg md:text-3xl font-black text-white tracking-tight leading-[1.05] mb-1 md:mb-2 uppercase drop-shadow-md text-left md:text-right">
                     Areas <span className="text-brand-lime drop-shadow-sm">Covered</span>
                   </h1>
-                  <div className="w-12 md:w-20 h-1.5 bg-brand-lime rounded-full mb-2 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
-                  <h2 className="font-headline text-[10px] md:text-xs font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
+                  <div className="w-10 md:w-20 h-1 md:h-1.5 bg-brand-lime rounded-full mb-1 md:mb-2 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
+                  <h2 className="font-headline text-[9px] md:text-xs font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-left md:text-right">
                     Margate, Broadstairs,<br/>Ramsgate & more
                   </h2>
                 </motion.div>
@@ -348,14 +348,14 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="flex flex-col items-end"
+                  className="flex flex-col items-start md:items-end"
                 >
-                  <h1 className="font-headline text-2xl md:text-3xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md text-right">
+                  <h1 className="font-headline text-lg md:text-3xl font-black text-white tracking-tight leading-[1.05] mb-1 md:mb-2 uppercase drop-shadow-md text-left md:text-right">
                     Quick, Free,<br/>
                     <span className="text-brand-lime drop-shadow-sm">Simple</span>
                   </h1>
-                  <div className="w-12 md:w-20 h-1.5 bg-brand-lime rounded-full mb-2 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
-                  <h2 className="font-headline text-[10px] md:text-xs font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
+                  <div className="w-10 md:w-20 h-1 md:h-1.5 bg-brand-lime rounded-full mb-1 md:mb-2 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
+                  <h2 className="font-headline text-[9px] md:text-xs font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-left md:text-right">
                     Click To Start
                   </h2>
                 </motion.div>
@@ -368,7 +368,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 }
             }}
-            className="mt-0"
+            className="mt-0 shrink-0 ml-3 md:ml-0"
           >
             <motion.button 
               onClick={onNext} 
@@ -381,9 +381,9 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                 ]
               }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-[9px] md:text-[10px] px-2 md:px-4 rounded-xl border border-transparent flex items-center justify-center gap-1 shadow-[0_6px_15px_rgba(149,228,4,0.3)] w-36 md:w-44 h-10 md:h-12 tracking-wide uppercase"
+              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-[8px] md:text-[10px] px-2 md:px-4 rounded-xl border border-transparent flex items-center justify-center gap-0.5 md:gap-1 shadow-[0_6px_15px_rgba(149,228,4,0.3)] w-28 md:w-44 h-10 md:h-12 tracking-wide uppercase leading-tight text-center"
             >
-              Get Your Free Quote <ChevronRight size={14} strokeWidth={3} className="shrink-0" />
+              Get Quote <ChevronRight size={12} strokeWidth={3} className="shrink-0" />
             </motion.button>
           </motion.div>
         </motion.div>
