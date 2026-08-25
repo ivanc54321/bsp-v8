@@ -171,7 +171,7 @@ export default function App() {
           )}
           {step === 3 && (
             <motion.div key="step3" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
-              <Step3 onNext={() => setStep(4)} onBack={() => setStep(2)} windowCount={windowCount} setWindowCount={setWindowCount} privacyLevel={privacyLevel} setPrivacyLevel={setPrivacyLevel} />
+              <Step3 onNext={() => setStep(4)} onBack={() => setStep(2)} windowCount={windowCount} setWindowCount={setWindowCount} privacyLevel={privacyLevel} setPrivacyLevel={setPrivacyLevel} filmCategory={filmCategory} selectedDesign={selectedDesign} />
             </motion.div>
           )}
           {step === 4 && (
@@ -567,43 +567,29 @@ function Step1({ onNext, filmCategory, setFilmCategory }: { onNext: () => void, 
       </div>
 
       <div className="grid grid-cols-2 gap-4 mb-12">
-        <div 
-          className={`bg-surface-bg rounded-3xl p-4 md:p-6 border-2 cursor-pointer transition-all flex flex-col ${filmCategory === 'frosted' ? 'border-brand-lime shadow-[0_0_20px_rgba(180,207,82,0.2)]' : 'border-transparent hover:border-brand-lime/30'}`}
-          onClick={() => {
+        <DesignCard
+          title="Frosted"
+          desc="Classic privacy by diffusing light."
+          imgUrl="/frosted.jpg"
+          selected={filmCategory === 'frosted'}
+          buttonText="Select Style"
+          onSelect={() => {
             setFilmCategory('frosted');
+            setTimeout(onNext, 200);
           }}
-        >
-          <div className="w-full aspect-square bg-surface-highest rounded-xl mb-4 overflow-hidden relative">
-             <img src="/frosted.jpg" alt="Frosted" className="w-full h-full object-cover" />
-             <div className="absolute inset-0 bg-black/10"></div>
-          </div>
-          <h3 className="font-headline font-bold text-lg mb-2">Frosted</h3>
-          <p className="text-xs text-text-muted">Classic privacy by diffusing light.</p>
-        </div>
-        
-        <div 
-          className={`bg-surface-bg rounded-3xl p-4 md:p-6 border-2 cursor-pointer transition-all flex flex-col ${filmCategory === 'oneway' ? 'border-brand-lime shadow-[0_0_20px_rgba(180,207,82,0.2)]' : 'border-transparent hover:border-brand-lime/30'}`}
-          onClick={() => {
+        />
+        <DesignCard
+          title="One-Way"
+          desc="Daytime privacy with a reflective surface."
+          imgUrl={onewayImg}
+          selected={filmCategory === 'oneway'}
+          buttonText="Select Style"
+          onSelect={() => {
             setFilmCategory('oneway');
+            setTimeout(onNext, 200);
           }}
-        >
-          <div className="w-full aspect-square bg-surface-highest rounded-xl mb-4 overflow-hidden relative">
-            <img src={onewayImg} alt="One Way" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-black/10"></div>
-          </div>
-          <h3 className="font-headline font-bold text-lg mb-2">One-Way</h3>
-          <p className="text-xs text-text-muted">Daytime privacy with a reflective surface.</p>
-        </div>
+        />
       </div>
-
-      <button onClick={() => {
-        if (!filmCategory) {
-          setFilmCategory('frosted');
-        }
-        onNext();
-      }} className="w-full bg-brand-lime text-black font-headline font-extrabold text-sm py-4 rounded-full shadow-[0_0_15px_rgba(180,207,82,0.5)] animate-pulse hover:bg-[#b4cf52] hover:-translate-y-0.5 transition-all active:scale-95 flex items-center justify-center gap-2 mb-12">
-        Next <ArrowRight size={18} />
-      </button>
 
       {/* Info Cards */}
       <div className="space-y-3">
@@ -614,7 +600,7 @@ function Step1({ onNext, filmCategory, setFilmCategory }: { onNext: () => void, 
 }
 
 
-function Step3({ onNext, onBack, windowCount, setWindowCount, privacyLevel, setPrivacyLevel }: { onNext: () => void, onBack: () => void, windowCount: number, setWindowCount: (c: number) => void, privacyLevel: number, setPrivacyLevel: (p: number) => void }) {
+function Step3({ onNext, onBack, windowCount, setWindowCount, privacyLevel, setPrivacyLevel, filmCategory, selectedDesign }: { onNext: () => void, onBack: () => void, windowCount: number, setWindowCount: (c: number) => void, privacyLevel: number, setPrivacyLevel: (p: number) => void, filmCategory: 'frosted' | 'oneway' | null, selectedDesign: DesignType | null }) {
   const [width, setWidth] = useState('');
   const [height, setHeight] = useState('');
   const windowRef = useRef<HTMLDivElement>(null);
@@ -659,10 +645,33 @@ function Step3({ onNext, onBack, windowCount, setWindowCount, privacyLevel, setP
     setPrivacyLevel(Math.max(0, Math.min(100, Math.round(percentage))));
   };
 
+  let filmOverlayClass = "bg-white/10 backdrop-blur-md border-t-[1.5px] border-white/80 shadow-[0_-2px_10px_rgba(255,255,255,0.3)]";
+  if (filmCategory === 'oneway') {
+    if (selectedDesign?.title === 'Silver Blue') {
+      filmOverlayClass = "bg-[#2563eb]/30 backdrop-blur-[2px] border-t-[1.5px] border-[#60a5fa]/80 shadow-[0_-2px_10px_rgba(37,99,235,0.3)]";
+    } else if (selectedDesign?.title === 'Bronze Tan') {
+      filmOverlayClass = "bg-[#b45309]/30 backdrop-blur-[2px] border-t-[1.5px] border-[#f59e0b]/80 shadow-[0_-2px_10px_rgba(180,83,9,0.3)]";
+    } else if (selectedDesign?.title === 'Charcoal Black') {
+      filmOverlayClass = "bg-black/60 backdrop-blur-[2px] border-t-[1.5px] border-gray-600/80 shadow-[0_-2px_10px_rgba(0,0,0,0.5)]";
+    } else {
+      filmOverlayClass = "bg-black/40 backdrop-blur-[2px] border-t-[1.5px] border-gray-500/80 shadow-[0_-2px_10px_rgba(0,0,0,0.3)]";
+    }
+  }
+
   return (
     <div className="flex flex-col">
       <ProgressBar step={3} total={3} label="Step 3 of 3" />
       
+      {filmCategory && selectedDesign && (
+        <div className="inline-flex self-start px-3 py-1.5 bg-surface-highest rounded-full border border-surface-highest/50 shadow-sm mt-4">
+          <span className="text-xs font-semibold text-text-muted">
+            <span className="text-brand-lime mr-1.5">{filmCategory === 'frosted' ? 'Frosted' : 'One-Way'}</span> 
+            <span className="text-text-main opacity-40 mx-1.5">•</span> 
+            <span className="text-white">{selectedDesign.title}</span>
+          </span>
+        </div>
+      )}
+
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -731,7 +740,7 @@ function Step3({ onNext, onBack, windowCount, setWindowCount, privacyLevel, setP
 
               {/* Frosted Film */}
               <motion.div 
-                className="absolute bottom-0 left-0 right-0 bg-white/10 backdrop-blur-md border-t-[1.5px] border-white/80 flex items-center justify-center shadow-[0_-2px_10px_rgba(255,255,255,0.3)] overflow-hidden"
+                className={`absolute bottom-0 left-0 right-0 flex items-center justify-center overflow-hidden ${filmOverlayClass}`}
                 animate={{ height: `${privacyLevel}%` }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
               >
@@ -772,7 +781,7 @@ function Step3({ onNext, onBack, windowCount, setWindowCount, privacyLevel, setP
 
               {/* Frosted Film */}
               <motion.div 
-                className="absolute bottom-0 left-0 right-0 bg-white/10 backdrop-blur-md border-t-[1.5px] border-white/80 flex items-center justify-center shadow-[0_-2px_10px_rgba(255,255,255,0.3)] overflow-hidden"
+                className={`absolute bottom-0 left-0 right-0 flex items-center justify-center overflow-hidden ${filmOverlayClass}`}
                 animate={{ height: `${privacyLevel}%` }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
               >
@@ -917,7 +926,7 @@ function InfoCard({ icon, title, desc }: { icon: React.ReactNode, title: string,
   );
 }
 
-function DesignCard({ title, desc, imgUrl, popular, selected, onSelect }: { title: string, desc: string, imgUrl: string, popular?: boolean, selected?: boolean, onSelect: () => void, key?: string | number }) {
+function DesignCard({ title, desc, imgUrl, popular, selected, buttonText = "Select Design", onSelect }: { title: string, desc: string, imgUrl: string, popular?: boolean, selected?: boolean, buttonText?: string, onSelect: () => void, key?: string | number }) {
   return (
     <div 
       className={`bg-[#1c1d1a] rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border-2 flex flex-col group cursor-pointer ${selected ? 'border-brand-lime shadow-[0_0_25px_rgba(180,207,82,0.15)] bg-[#232520]' : 'border-surface-highest/50 hover:border-brand-lime/60'}`}
@@ -936,7 +945,7 @@ function DesignCard({ title, desc, imgUrl, popular, selected, onSelect }: { titl
         <h3 className="font-headline font-bold text-base md:text-lg mb-2 group-hover:text-brand-lime transition-colors">{title}</h3>
         <p className="font-body text-[10px] md:text-xs text-text-muted mb-4 flex-grow leading-relaxed line-clamp-3">{desc}</p>
         <button className={`w-full py-3 text-xs font-bold rounded-xl border border-transparent transition-all active:scale-95 duration-300 ${selected ? 'bg-brand-lime text-black shadow-[0_0_15px_rgba(180,207,82,0.3)]' : 'bg-surface-highest text-text-main hover:bg-brand-lime hover:text-black hover:border-brand-lime hover:shadow-[0_0_15px_rgba(180,207,82,0.2)]'}`}>
-          {selected ? 'Selected' : 'Select Design'}
+          {selected ? 'Selected' : buttonText}
         </button>
       </div>
     </div>
@@ -954,9 +963,9 @@ function Step2({ filmCategory, selectedDesign, setSelectedDesign, onNext, onBack
   ];
 
   const onewayDesigns = [
-    { title: "Silver Blue", desc: "Sleek metallic blue finish. Excellent heat rejection.", imgUrl: "/blue.jpg", popular: true },
-    { title: "Bronze Tan", desc: "Warm bronze reflection. Ideal for traditional architecture.", imgUrl: "/tea.jpg" },
-    { title: "Charcoal Black", desc: "Deep black mirror effect. Maximum glare reduction.", imgUrl: "/black.jpg" }
+    { title: "Silver Blue", desc: "Sleek metallic blue finish. Excellent heat rejection.", imgUrl: "/blue.webp", popular: true },
+    { title: "Bronze Tan", desc: "Warm bronze reflection. Ideal for traditional architecture.", imgUrl: "/tea.webp" },
+    { title: "Charcoal Black", desc: "Deep black mirror effect. Maximum glare reduction.", imgUrl: "/black.webp" }
   ];
 
   const designs = filmCategory === 'oneway' ? onewayDesigns : frostedDesigns;
