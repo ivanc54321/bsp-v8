@@ -37,7 +37,7 @@ export function ReviewCarousel() {
   }, []);
 
   return (
-    <div className="px-6 mb-12">
+    <div className="mb-12">
       <div className="bg-surface-low rounded-3xl p-6 border border-surface-highest/50 shadow-sm relative overflow-hidden min-h-[180px]">
         {/* Decorative Quote Mark */}
         <div className="absolute top-4 right-6 text-brand-lime/10 text-6xl font-serif font-black leading-none select-none">

@@ -224,38 +224,8 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
         {/* Background Pattern */}
         <div className="absolute inset-0 z-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
 
-        {/* Action Buttons */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-          className="absolute top-[45%] left-6 z-20 flex flex-wrap justify-start gap-3 w-auto"
-        >
-          <motion.button 
-            onClick={onNext} 
-            animate={{ 
-              boxShadow: [
-                "0px 8px 20px rgba(180,207,82,0.3)",
-                "0px 12px 25px rgba(180,207,82,0.5)",
-                "0px 8px 20px rgba(180,207,82,0.3)"
-              ]
-            }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="bg-brand-lime text-black font-headline font-extrabold text-sm py-2.5 px-5 rounded-xl hover:bg-[#b4cf52] border border-white/20 flex items-center justify-center gap-2 shadow-lg"
-          >
-            Start Quote <ArrowRight size={16} />
-          </motion.button>
-  
-          <motion.button 
-            onClick={onOpenChat}
-            className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-sm py-2.5 px-5 rounded-xl border border-white/10 flex items-center justify-center gap-2 shadow-lg hover:bg-black/60 transition-colors"
-          >
-            <MessageSquare size={16} className="text-brand-lime" /> CHAT WITH US
-          </motion.button>
-        </motion.div>
-
-        {/* Top Content Row */}
-        <div className="relative z-20 flex justify-end items-start w-full gap-4">
+        {/* Content Section (Bottom Aligned) */}
+        <div className="relative z-20 flex flex-col items-start md:items-end justify-end w-full gap-5 mt-auto pt-40 md:pt-20">
           {/* Animated Header Text */}
           <motion.div 
             initial="hidden"
@@ -269,50 +239,77 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                 }
               }
             }}
-            className="flex flex-col items-start md:items-end text-left md:text-right w-full md:w-auto min-h-[120px]"
+            className="flex flex-col items-start md:items-end text-left md:text-right w-full min-h-[100px]"
           >
-          <AnimatePresence mode="wait">
-            {!showAreas ? (
-              <motion.div 
-                key="glazing"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col items-end"
-              >
-                <h1 className="font-headline text-3xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
-                  Static Glazing<br/>
-                  <span className="text-brand-lime drop-shadow-sm">Installation</span>
-                </h1>
-                <h2 className="font-headline text-xs font-bold text-white/80 tracking-widest uppercase mb-4 drop-shadow-md">
-                  Window Privacy Film
-                </h2>
-              </motion.div>
-            ) : (
-              <motion.div 
-                key="areas"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col items-end"
-              >
-                <h1 className="font-headline text-3xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
-                  Areas <span className="text-brand-lime drop-shadow-sm">Covered</span>
-                </h1>
-                <h2 className="font-headline text-xs font-bold text-white/80 tracking-widest uppercase mb-4 drop-shadow-md">
-                  Margate, Broadstairs, Ramsgate & more
-                </h2>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+            <AnimatePresence mode="wait">
+              {!showAreas ? (
+                <motion.div 
+                  key="glazing"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col items-start md:items-end"
+                >
+                  <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
+                    Static Glazing<br/>
+                    <span className="text-brand-lime drop-shadow-sm">Installation</span>
+                  </h1>
+                  <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase mb-2 drop-shadow-md">
+                    Window Privacy Film
+                  </h2>
+                </motion.div>
+              ) : (
+                <motion.div 
+                  key="areas"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col items-start md:items-end"
+                >
+                  <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
+                    Areas <span className="text-brand-lime drop-shadow-sm">Covered</span>
+                  </h1>
+                  <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase mb-2 drop-shadow-md">
+                    Margate, Broadstairs, Ramsgate & more
+                  </h2>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Action Buttons */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+            className="flex flex-row justify-start md:justify-end gap-3 w-full"
+          >
+            <motion.button 
+              onClick={onNext} 
+              animate={{ 
+                boxShadow: [
+                  "0px 8px 20px rgba(180,207,82,0.3)",
+                  "0px 12px 25px rgba(180,207,82,0.5)",
+                  "0px 8px 20px rgba(180,207,82,0.3)"
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="bg-brand-lime text-black font-headline font-extrabold text-sm md:text-base py-3 px-4 md:px-6 rounded-xl hover:bg-[#b4cf52] border border-white/20 flex items-center justify-center gap-1 md:gap-2 shadow-lg flex-1 md:flex-none"
+            >
+              Start Quote <ArrowRight size={16} className="shrink-0" />
+            </motion.button>
+    
+            <motion.button 
+              onClick={onOpenChat}
+              className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-sm md:text-base py-3 px-4 md:px-6 rounded-xl border border-white/10 flex items-center justify-center gap-1 md:gap-2 shadow-lg hover:bg-black/60 transition-colors flex-1 md:flex-none whitespace-nowrap"
+            >
+              <MessageSquare size={16} className="text-brand-lime shrink-0" /> CHAT WITH US
+            </motion.button>
+          </motion.div>
         </div>
       </div>
-
-      {/* Trust/Reviews Carousel */}
-      <ReviewCarousel />
 
       <div className="px-6 pb-20">
         <motion.h3 
@@ -424,6 +421,9 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
         >
           START YOUR PRECISION QUOTE <ArrowRight size={20} />
         </motion.button>
+
+        {/* Trust/Reviews Carousel */}
+        <ReviewCarousel />
 
         {/* Testimonial Video */}
         <motion.div
