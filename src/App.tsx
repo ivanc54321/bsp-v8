@@ -454,13 +454,13 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
               <p className="font-bold text-base text-white mb-3">SELECT DESIGN</p>
               <div className="flex gap-3">
                 <div className="w-14 h-14 bg-surface-highest rounded-xl border-2 border-surface-highest overflow-hidden hover:border-brand-lime transition-colors">
-                  <img src="https://i.ibb.co/HLZCS7Zp/Chat-GPT-Image-Mar-17-2026-05-04-40-PM.png" alt="Stripes" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                  <img src="https://images.unsplash.com/photo-1518002171953-a080ee817e1f?auto=format&fit=crop&q=80&w=800" alt="Stripes" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                 </div>
                 <div className="w-14 h-14 bg-surface-highest rounded-xl border-2 border-surface-highest overflow-hidden hover:border-brand-lime transition-colors">
-                  <img src="https://i.ibb.co/vvjtVcjV/stripe.png" alt="Frosted" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                  <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800" alt="Frosted" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                 </div>
                 <div className="w-14 h-14 bg-surface-highest rounded-xl border-2 border-surface-highest overflow-hidden hover:border-brand-lime transition-colors">
-                  <img src="https://i.ibb.co/wNz9X34w/Untitled-3.png" alt="Brick" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                  <img src="https://images.unsplash.com/photo-1509343256512-d77a5cb3791b?auto=format&fit=crop&q=80&w=800" alt="Brick" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                 </div>
               </div>
             </div>
@@ -943,9 +943,9 @@ function DesignCard({ title, desc, imgUrl, popular, selected, onSelect }: { titl
 
 function Step2({ filmCategory, selectedDesign, setSelectedDesign, onNext, onBack }: { filmCategory: 'frosted' | 'oneway' | null, selectedDesign: DesignType | null, setSelectedDesign: (d: DesignType) => void, onNext: () => void, onBack: () => void }) {
   const frostedDesigns = [
-    { title: "Stripes", desc: "Classic linear pattern for privacy. Ideal for office dividers.", imgUrl: "https://i.ibb.co/HLZCS7Zp/Chat-GPT-Image-Mar-17-2026-05-04-40-PM.png", popular: true },
-    { title: "Frosted", desc: "Maximum privacy with high light transmission. The architectural standard.", imgUrl: "https://i.ibb.co/vvjtVcjV/stripe.png" },
-    { title: "Brick Style", desc: "Geometric staggered pattern providing a unique textured look.", imgUrl: "https://i.ibb.co/wNz9X34w/Untitled-3.png" },
+    { title: "Stripes", desc: "Classic linear pattern for privacy. Ideal for office dividers.", imgUrl: "https://images.unsplash.com/photo-1518002171953-a080ee817e1f?auto=format&fit=crop&q=80&w=800", popular: true },
+    { title: "Frosted", desc: "Maximum privacy with high light transmission. The architectural standard.", imgUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800" },
+    { title: "Brick Style", desc: "Geometric staggered pattern providing a unique textured look.", imgUrl: "https://images.unsplash.com/photo-1509343256512-d77a5cb3791b?auto=format&fit=crop&q=80&w=800" },
     { title: "Geometric", desc: "Modern intersecting lines creating a sophisticated privacy barrier.", imgUrl: "https://live.staticflickr.com/65535/55177673305_8bfbda1dec_z.jpg" },
     { title: "Reeded", desc: "Vertical fluted glass effect for a vintage yet contemporary feel.", imgUrl: "https://live.staticflickr.com/65535/55177271926_3f99312d6d_z.jpg" },
     { title: "Dusted", desc: "Subtle sandblasted appearance for elegant, understated privacy.", imgUrl: "https://live.staticflickr.com/65535/55177271941_280b8f8fc6_z.jpg" }
