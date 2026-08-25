@@ -32,6 +32,7 @@ export default function App() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedDesign, setSelectedDesign] = useState<DesignType | null>(null);
   const [filmCategory, setFilmCategory] = useState<'frosted' | 'oneway' | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,15 +56,15 @@ export default function App() {
         <button onClick={prevStep} className={`text-brand-dark hover:opacity-70 transition-opacity p-2 -ml-2 ${step === 0 ? 'invisible' : ''}`}>
           <ArrowLeft size={20} />
         </button>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center cursor-pointer" onClick={() => setStep(0)}>
           <img 
             src={isDark ? "https://live.staticflickr.com/65535/55185118963_f42a70897c_o.png" : "https://live.staticflickr.com/65535/55187130150_67854d774c_o.png"} 
             alt="Brightside Logo" 
-            className="h-10 sm:h-12 object-contain"
+            className="h-14 sm:h-16 object-contain"
             referrerPolicy="no-referrer"
           />
         </div>
-        <div className="flex items-center gap-2 -mr-2">
+        <div className="flex items-center gap-2 -mr-2 relative">
           <button 
             onClick={() => setIsDark(!isDark)} 
             className="text-brand-dark hover:opacity-70 transition-opacity p-2"
@@ -71,13 +72,75 @@ export default function App() {
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-          <button className="text-brand-dark hover:opacity-70 transition-opacity p-2">
-            <div className="flex flex-col gap-1.5 w-6">
-              <div className="h-0.5 w-full bg-current rounded-full"></div>
-              <div className="h-0.5 w-full bg-current rounded-full"></div>
-              <div className="h-0.5 w-full bg-current rounded-full"></div>
-            </div>
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-brand-dark hover:opacity-70 transition-opacity p-2 relative z-50"
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? (
+              <X size={24} />
+            ) : (
+              <div className="flex flex-col gap-1.5 w-6">
+                <div className="h-0.5 w-full bg-current rounded-full"></div>
+                <div className="h-0.5 w-full bg-current rounded-full"></div>
+                <div className="h-0.5 w-full bg-current rounded-full"></div>
+              </div>
+            )}
           </button>
+
+          {/* Dropdown Menu */}
+          <AnimatePresence>
+            {isMenuOpen && (
+              <>
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+                />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, originTopRight: true, y: -10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-14 right-0 w-56 bg-surface-low border border-surface-highest/50 rounded-2xl shadow-xl z-50 overflow-hidden flex flex-col py-2"
+                >
+                  <button 
+                    onClick={() => { setStep(0); setIsMenuOpen(false); }}
+                    className="flex items-center gap-3 px-5 py-3 hover:bg-surface-highest/30 transition-colors text-left w-full font-headline font-semibold text-text-main"
+                  >
+                    <Home size={18} className="text-brand-lime" /> Home
+                  </button>
+                  <button 
+                    onClick={() => { setStep(1); setIsMenuOpen(false); }}
+                    className="flex items-center gap-3 px-5 py-3 hover:bg-surface-highest/30 transition-colors text-left w-full font-headline font-semibold text-text-main"
+                  >
+                    <FileText size={18} className="text-brand-lime" /> Start a Quote
+                  </button>
+                  <button 
+                    onClick={() => { setStep(5); setIsMenuOpen(false); }}
+                    className="flex items-center gap-3 px-5 py-3 hover:bg-surface-highest/30 transition-colors text-left w-full font-headline font-semibold text-text-main"
+                  >
+                    <Info size={18} className="text-brand-lime" /> About Us
+                  </button>
+                  <button 
+                    onClick={() => { setStep(6); setIsMenuOpen(false); }}
+                    className="flex items-center gap-3 px-5 py-3 hover:bg-surface-highest/30 transition-colors text-left w-full font-headline font-semibold text-text-main"
+                  >
+                    <HelpCircle size={18} className="text-brand-lime" /> Why Us / FAQ
+                  </button>
+                  <div className="h-px bg-surface-highest/50 my-1 mx-4"></div>
+                  <button 
+                    onClick={() => { setIsChatOpen(true); setIsMenuOpen(false); }}
+                    className="flex items-center gap-3 px-5 py-3 hover:bg-surface-highest/30 transition-colors text-left w-full font-headline font-semibold text-text-main"
+                  >
+                    <MessageSquare size={18} className="text-brand-lime" /> Chat with Us
+                  </button>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </div>
       </header>
       
@@ -193,11 +256,11 @@ function ProgressBar({ step, total, label }: { step: number, total: number, labe
 function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => void }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [showAreas, setShowAreas] = useState(false);
+  const [carouselStep, setCarouselStep] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setShowAreas(prev => !prev);
+      setCarouselStep(prev => (prev + 1) % 3);
     }, 2500); // toggle every 2.5 seconds
     return () => clearInterval(interval);
   }, []);
@@ -242,7 +305,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
             className="flex flex-col items-start md:items-end text-left md:text-right w-full min-h-[100px]"
           >
             <AnimatePresence mode="wait">
-              {!showAreas ? (
+              {carouselStep === 0 && (
                 <motion.div 
                   key="glazing"
                   initial={{ opacity: 0, y: 20 }}
@@ -259,7 +322,8 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                     Window Privacy Film
                   </h2>
                 </motion.div>
-              ) : (
+              )}
+              {carouselStep === 1 && (
                 <motion.div 
                   key="areas"
                   initial={{ opacity: 0, y: 20 }}
@@ -272,7 +336,25 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                     Areas <span className="text-brand-lime drop-shadow-sm">Covered</span>
                   </h1>
                   <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase mb-2 drop-shadow-md">
-                    Margate, Broadstairs, Ramsgate & more
+                    Margate, Broadstairs,<br/>Ramsgate & more
+                  </h2>
+                </motion.div>
+              )}
+              {carouselStep === 2 && (
+                <motion.div 
+                  key="quick"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col items-start md:items-end"
+                >
+                  <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
+                    Quick, Free,<br/>
+                    <span className="text-brand-lime drop-shadow-sm">Simple</span>
+                  </h1>
+                  <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase mb-2 drop-shadow-md">
+                    Click To Start
                   </h2>
                 </motion.div>
               )}
@@ -1300,6 +1382,33 @@ function WhyUs() {
           <p className="text-text-muted text-sm leading-relaxed">
             From your initial instant quote to the final installation, our expert team provides a seamless, professional experience. We handle the final measurements and precision fitting, so you can sit back and enjoy your newly transformed space with complete peace of mind.
           </p>
+        </div>
+
+        <div className="pt-6">
+          <h2 className="font-headline text-2xl font-black text-text-main mb-6 tracking-tight flex items-center gap-3">
+            <HelpCircle className="text-brand-lime" size={28} /> 
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-4">
+            <div className="bg-surface-low p-5 rounded-2xl border border-surface-highest/50 shadow-sm relative overflow-hidden group hover:border-brand-lime/30 transition-colors">
+              <h4 className="font-headline font-bold text-text-main mb-2 text-base">How long does the installation take?</h4>
+              <p className="text-text-muted text-sm leading-relaxed">
+                Most residential installations are completed within 1 to 2 hours, depending on the number of windows and the complexity of the custom cuts. We always aim for a fast, non-disruptive service.
+              </p>
+            </div>
+            <div className="bg-surface-low p-5 rounded-2xl border border-surface-highest/50 shadow-sm relative overflow-hidden group hover:border-brand-lime/30 transition-colors">
+              <h4 className="font-headline font-bold text-text-main mb-2 text-base">How do I clean and maintain the film?</h4>
+              <p className="text-text-muted text-sm leading-relaxed">
+                Simply use a soft microfiber cloth and a standard, non-abrasive glass cleaner or warm soapy water. Because it utilizes static cling rather than glue, avoid using hard scrapers that could scratch the surface.
+              </p>
+            </div>
+            <div className="bg-surface-low p-5 rounded-2xl border border-surface-highest/50 shadow-sm relative overflow-hidden group hover:border-brand-lime/30 transition-colors">
+              <h4 className="font-headline font-bold text-text-main mb-2 text-base">How durable is the Static Tech™ film?</h4>
+              <p className="text-text-muted text-sm leading-relaxed">
+                Our films are incredibly durable and designed to last for years without peeling, yellowing, or blistering. They are UV resistant and can even be removed and reused if you ever need to change your aesthetic.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
