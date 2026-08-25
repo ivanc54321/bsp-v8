@@ -7,7 +7,7 @@ import {
   ArrowLeft, X, Home, FileText, User, Settings, HelpCircle,
   Info, Lightbulb, ShieldCheck, Minus, Plus, 
   ArrowRight, EyeOff, Shield, Sliders, Calendar, 
-  Bookmark, Check, ChevronDown, LayoutGrid,
+  Bookmark, Check, ChevronDown, ChevronRight, LayoutGrid,
   Moon, Sun, Phone, MessageSquare, Briefcase, Play, CreditCard
 } from 'lucide-react';
 import { Chatbot } from './components/Chatbot';
@@ -289,7 +289,31 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
         <div className="absolute inset-0 z-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
 
         {/* Content Section (Bottom Aligned) */}
-        <div className="relative z-20 flex flex-col items-start md:items-end justify-end w-full gap-5 mt-auto pt-40 md:pt-20">
+        <div className="relative z-20 flex flex-col items-center md:items-end justify-end w-full gap-5 mt-auto pt-40 md:pt-20">
+          {/* Action Buttons */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+            className="flex flex-col md:flex-row items-stretch justify-center md:justify-end gap-3 w-full"
+          >
+            <motion.button 
+              onClick={onNext} 
+              animate={{ 
+                scale: [1, 1.05, 1],
+                boxShadow: [
+                  "0px 8px 20px rgba(149,228,4,0.3)",
+                  "0px 12px 25px rgba(149,228,4,0.6)",
+                  "0px 8px 20px rgba(149,228,4,0.3)"
+                ]
+              }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-sm md:text-base py-3 px-6 md:px-8 rounded-full flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(149,228,4,0.3)] w-full md:w-auto tracking-wide uppercase"
+            >
+              Get Your Free Quote <ChevronRight size={20} strokeWidth={3} className="shrink-0" />
+            </motion.button>
+          </motion.div>
+
           {/* Animated Header Text */}
           <motion.div 
             initial="hidden"
@@ -303,7 +327,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                 }
               }
             }}
-            className="flex flex-col items-start md:items-end text-left md:text-right w-full min-h-[100px]"
+            className="flex flex-col items-center md:items-end text-center md:text-right w-full min-h-[100px]"
           >
             <AnimatePresence mode="wait">
               {carouselStep === 0 && (
@@ -313,7 +337,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="flex flex-col items-start md:items-end"
+                  className="flex flex-col items-center md:items-end"
                 >
                   <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
                     Static Glazing<br/>
@@ -331,7 +355,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="flex flex-col items-start md:items-end"
+                  className="flex flex-col items-center md:items-end"
                 >
                   <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
                     Areas <span className="text-brand-lime drop-shadow-sm">Covered</span>
@@ -348,7 +372,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="flex flex-col items-start md:items-end"
+                  className="flex flex-col items-center md:items-end"
                 >
                   <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
                     Quick, Free,<br/>
@@ -362,32 +386,15 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
             </AnimatePresence>
           </motion.div>
 
-          {/* Action Buttons */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-            className="flex flex-row justify-start md:justify-end gap-3 w-full"
+            transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+            className="w-full flex justify-center md:justify-end mt-2"
           >
             <motion.button 
-              onClick={onNext} 
-              animate={{ 
-                scale: [1, 1.05, 1],
-                boxShadow: [
-                  "0px 8px 20px rgba(149,228,4,0.3)",
-                  "0px 12px 25px rgba(149,228,4,0.6)",
-                  "0px 8px 20px rgba(149,228,4,0.3)"
-                ]
-              }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-brand-lime text-black font-headline font-extrabold text-sm md:text-base py-3 px-4 md:px-6 rounded-xl hover:bg-[#95e404] border border-white/20 flex items-center justify-center gap-1 md:gap-2 shadow-lg flex-1 md:flex-none"
-            >
-              Get Your Free Quote <ArrowRight size={16} className="shrink-0" />
-            </motion.button>
-    
-            <motion.button 
               onClick={onOpenChat}
-              className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-sm md:text-base py-3 px-4 md:px-6 rounded-xl border border-white/10 flex items-center justify-center gap-1 md:gap-2 shadow-lg hover:bg-black/60 transition-colors flex-1 md:flex-none whitespace-nowrap"
+              className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-sm md:text-base py-3 px-4 md:px-6 rounded-xl border border-white/10 flex items-center justify-center gap-1 md:gap-2 shadow-lg hover:bg-black/60 transition-colors w-full md:w-auto whitespace-nowrap"
             >
               <MessageSquare size={16} className="text-brand-lime shrink-0" /> CHAT WITH US
             </motion.button>
@@ -501,9 +508,9 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
           onClick={onNext} 
-          className="w-full bg-brand-lime text-black font-headline font-extrabold text-lg py-5 rounded-2xl shadow-[0_10px_30px_rgba(149,228,4,0.25)] hover:bg-[#95e404] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2 mb-8"
+          className="w-full bg-gradient-to-r from-[#1a1a1a] to-[#95e404] text-white font-headline font-extrabold text-xl py-4 rounded-full border-[6px] border-brand-lime shadow-[0_10px_30px_rgba(149,228,4,0.4)] hover:shadow-[0_15px_40px_rgba(149,228,4,0.6)] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2 mb-8 tracking-wide"
         >
-          START YOUR PRECISION QUOTE <ArrowRight size={20} />
+          START YOUR PRECISION QUOTE <ChevronRight size={24} strokeWidth={3} />
         </motion.button>
 
         {/* Trust/Reviews Carousel */}
