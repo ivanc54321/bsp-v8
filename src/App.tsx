@@ -374,13 +374,13 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
               animate={{ 
                 scale: [1, 1.05, 1],
                 boxShadow: [
-                  "0px 8px 20px rgba(180,207,82,0.3)",
-                  "0px 12px 25px rgba(180,207,82,0.6)",
-                  "0px 8px 20px rgba(180,207,82,0.3)"
+                  "0px 8px 20px rgba(149,228,4,0.3)",
+                  "0px 12px 25px rgba(149,228,4,0.6)",
+                  "0px 8px 20px rgba(149,228,4,0.3)"
                 ]
               }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-brand-lime text-black font-headline font-extrabold text-sm md:text-base py-3 px-4 md:px-6 rounded-xl hover:bg-[#b4cf52] border border-white/20 flex items-center justify-center gap-1 md:gap-2 shadow-lg flex-1 md:flex-none"
+              className="bg-brand-lime text-black font-headline font-extrabold text-sm md:text-base py-3 px-4 md:px-6 rounded-xl hover:bg-[#95e404] border border-white/20 flex items-center justify-center gap-1 md:gap-2 shadow-lg flex-1 md:flex-none"
             >
               Get Your Free Quote <ArrowRight size={16} className="shrink-0" />
             </motion.button>
@@ -450,7 +450,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
             transition={{ duration: 0.5, delay: 0.8 }}
             className="relative z-10 flex items-start gap-5"
           >
-            <div className="w-10 h-10 rounded-full bg-surface-high border-2 border-brand-lime flex items-center justify-center font-headline font-bold text-brand-lime shrink-0 shadow-[0_0_15px_rgba(180,207,82,0.15)]">1</div>
+            <div className="w-10 h-10 rounded-full bg-surface-high border-2 border-brand-lime flex items-center justify-center font-headline font-bold text-brand-lime shrink-0 shadow-[0_0_15px_rgba(149,228,4,0.15)]">1</div>
             <div className="pt-2 w-full">
               <p className="font-bold text-base text-white mb-3">SELECT DESIGN</p>
               <div className="flex gap-3">
@@ -474,7 +474,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
             transition={{ duration: 0.5, delay: 0.9 }}
             className="relative z-10 flex items-start gap-5"
           >
-            <div className="w-10 h-10 rounded-full bg-surface-high border-2 border-brand-lime flex items-center justify-center font-headline font-bold text-brand-lime shrink-0 shadow-[0_0_15px_rgba(180,207,82,0.15)]">2</div>
+            <div className="w-10 h-10 rounded-full bg-surface-high border-2 border-brand-lime flex items-center justify-center font-headline font-bold text-brand-lime shrink-0 shadow-[0_0_15px_rgba(149,228,4,0.15)]">2</div>
             <div className="pt-2">
               <p className="font-bold text-base text-white mb-1">MEASUREMENT</p>
               <p className="text-sm text-text-muted">Input Dimensions (W/H, cm)</p>
@@ -488,7 +488,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
             transition={{ duration: 0.5, delay: 1.0 }}
             className="relative z-10 flex items-start gap-5"
           >
-            <div className="w-10 h-10 rounded-full bg-brand-lime border-2 border-brand-lime flex items-center justify-center font-headline font-bold text-black shrink-0 shadow-[0_0_15px_rgba(180,207,82,0.3)]">3</div>
+            <div className="w-10 h-10 rounded-full bg-brand-lime border-2 border-brand-lime flex items-center justify-center font-headline font-bold text-black shrink-0 shadow-[0_0_15px_rgba(149,228,4,0.3)]">3</div>
             <div className="pt-2">
               <p className="font-bold text-base text-white mb-1">CALCULATE PRICE</p>
               <p className="text-sm text-text-muted">Instant, Free Quote</p>
@@ -501,7 +501,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
           onClick={onNext} 
-          className="w-full bg-brand-lime text-black font-headline font-extrabold text-lg py-5 rounded-2xl shadow-[0_10px_30px_rgba(180,207,82,0.25)] hover:bg-[#b4cf52] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2 mb-8"
+          className="w-full bg-brand-lime text-black font-headline font-extrabold text-lg py-5 rounded-2xl shadow-[0_10px_30px_rgba(149,228,4,0.25)] hover:bg-[#95e404] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2 mb-8"
         >
           START YOUR PRECISION QUOTE <ArrowRight size={20} />
         </motion.button>
@@ -534,7 +534,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-brand-lime/90 text-black flex items-center justify-center shadow-[0_0_30px_rgba(180,207,82,0.4)] group-hover:scale-110 transition-transform">
+                  <div className="w-16 h-16 rounded-full bg-brand-lime/90 text-black flex items-center justify-center shadow-[0_0_30px_rgba(149,228,4,0.4)] group-hover:scale-110 transition-transform">
                     <Play size={28} className="ml-1" fill="currentColor" />
                   </div>
                 </div>
@@ -866,7 +866,7 @@ function Step3({ onNext, onBack, windowCount, setWindowCount, privacyLevel, setP
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.5, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="w-7 h-10 bg-brand-lime/20 border border-brand-lime rounded-[4px] flex flex-col relative overflow-hidden shadow-[0_0_10px_rgba(180,207,82,0.1)]"
+                className="w-7 h-10 bg-brand-lime/20 border border-brand-lime rounded-[4px] flex flex-col relative overflow-hidden shadow-[0_0_10px_rgba(149,228,4,0.1)]"
               >
                 {/* Window grid lines */}
                 <div className="absolute inset-x-0 top-1/2 h-[1px] bg-brand-lime/40 -translate-y-1/2"></div>
@@ -890,7 +890,7 @@ function Step3({ onNext, onBack, windowCount, setWindowCount, privacyLevel, setP
             <Minus size={18} />
           </button>
           <span className="font-headline text-lg font-extrabold">{windowCount}</span>
-          <button onClick={() => setWindowCount(windowCount + 1)} className="w-10 h-10 flex items-center justify-center bg-brand-lime rounded-full hover:bg-[#b4cf52] transition-colors active:scale-95 text-black">
+          <button onClick={() => setWindowCount(windowCount + 1)} className="w-10 h-10 flex items-center justify-center bg-brand-lime rounded-full hover:bg-[#95e404] transition-colors active:scale-95 text-black">
             <Plus size={18} />
           </button>
         </div>
@@ -900,7 +900,7 @@ function Step3({ onNext, onBack, windowCount, setWindowCount, privacyLevel, setP
         <button onClick={onBack} className="w-1/3 bg-surface-high text-text-main font-headline font-extrabold text-sm py-4 rounded-full shadow-sm hover:bg-surface-highest transition-all active:scale-95 flex items-center justify-center">
           Back
         </button>
-        <button onClick={onNext} className="w-2/3 bg-brand-lime text-black font-headline font-extrabold text-sm py-4 rounded-full shadow-[0_0_15px_rgba(180,207,82,0.5)] animate-pulse hover:bg-[#b4cf52] hover:-translate-y-0.5 transition-all active:scale-95 flex items-center justify-center gap-2">
+        <button onClick={onNext} className="w-2/3 bg-brand-lime text-black font-headline font-extrabold text-sm py-4 rounded-full shadow-[0_0_15px_rgba(149,228,4,0.5)] animate-pulse hover:bg-[#95e404] hover:-translate-y-0.5 transition-all active:scale-95 flex items-center justify-center gap-2">
           View Quote <ArrowRight size={18} />
         </button>
       </div>
@@ -933,7 +933,7 @@ function InfoCard({ icon, title, desc }: { icon: React.ReactNode, title: string,
 function DesignCard({ title, desc, imgUrl, popular, selected, buttonText = "Select Design", onSelect }: { title: string, desc: string, imgUrl: string, popular?: boolean, selected?: boolean, buttonText?: string, onSelect: () => void, key?: string | number }) {
   return (
     <div 
-      className={`bg-[#1c1d1a] rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border-2 flex flex-col group cursor-pointer ${selected ? 'border-brand-lime shadow-[0_0_25px_rgba(180,207,82,0.15)] bg-[#232520]' : 'border-surface-highest/50 hover:border-brand-lime/60'}`}
+      className={`bg-[#1c1d1a] rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border-2 flex flex-col group cursor-pointer ${selected ? 'border-brand-lime shadow-[0_0_25px_rgba(149,228,4,0.15)] bg-[#232520]' : 'border-surface-highest/50 hover:border-brand-lime/60'}`}
       onClick={onSelect}
     >
       <div className="aspect-square relative overflow-hidden bg-surface-highest">
@@ -948,7 +948,7 @@ function DesignCard({ title, desc, imgUrl, popular, selected, buttonText = "Sele
       <div className="p-4 md:p-6 flex flex-col flex-grow relative z-10">
         <h3 className="font-headline font-bold text-base md:text-lg mb-2 group-hover:text-brand-lime transition-colors">{title}</h3>
         <p className="font-body text-[10px] md:text-xs text-text-muted mb-4 flex-grow leading-relaxed line-clamp-3">{desc}</p>
-        <button className={`w-full py-3 text-xs font-bold rounded-xl border border-transparent transition-all active:scale-95 duration-300 ${selected ? 'bg-brand-lime text-black shadow-[0_0_15px_rgba(180,207,82,0.3)]' : 'bg-surface-highest text-text-main hover:bg-brand-lime hover:text-black hover:border-brand-lime hover:shadow-[0_0_15px_rgba(180,207,82,0.2)]'}`}>
+        <button className={`w-full py-3 text-xs font-bold rounded-xl border border-transparent transition-all active:scale-95 duration-300 ${selected ? 'bg-brand-lime text-black shadow-[0_0_15px_rgba(149,228,4,0.3)]' : 'bg-surface-highest text-text-main hover:bg-brand-lime hover:text-black hover:border-brand-lime hover:shadow-[0_0_15px_rgba(149,228,4,0.2)]'}`}>
           {selected ? 'Selected' : buttonText}
         </button>
       </div>
@@ -1094,7 +1094,7 @@ function Step4({ windowCount, privacyLevel, selectedDesign, onPlaceOrder }: { wi
           <div className="space-y-3 mb-6">
             <button 
               onClick={onPlaceOrder}
-              className="w-full bg-brand-lime text-black font-bold text-sm py-4 rounded-full flex items-center justify-center gap-2 hover:bg-[#b4cf52] transition-transform active:scale-95 shadow-[0_0_15px_rgba(180,207,82,0.5)] animate-pulse"
+              className="w-full bg-brand-lime text-black font-bold text-sm py-4 rounded-full flex items-center justify-center gap-2 hover:bg-[#95e404] transition-transform active:scale-95 shadow-[0_0_15px_rgba(149,228,4,0.5)] animate-pulse"
             >
               Place Order <ArrowRight size={18} />
             </button>
@@ -1163,7 +1163,7 @@ function CheckoutForm({ onConfirm, amount }: { onConfirm: () => void, amount: nu
       <button 
         type="submit"
         disabled={!stripe || isProcessing}
-        className="w-full bg-brand-lime text-black font-bold text-sm py-4 rounded-full flex items-center justify-center gap-2 hover:bg-[#b4cf52] transition-transform active:scale-95 shadow-[0_0_15px_rgba(180,207,82,0.5)] animate-pulse disabled:opacity-50 disabled:animate-none"
+        className="w-full bg-brand-lime text-black font-bold text-sm py-4 rounded-full flex items-center justify-center gap-2 hover:bg-[#95e404] transition-transform active:scale-95 shadow-[0_0_15px_rgba(149,228,4,0.5)] animate-pulse disabled:opacity-50 disabled:animate-none"
       >
         {isProcessing ? "Processing..." : `Pay £${amount} & Confirm`} <ArrowRight size={18} />
       </button>
@@ -1295,7 +1295,7 @@ function CheckoutPage({ windowCount, privacyLevel, selectedDesign, onConfirm, on
               </button>
             </div>
           ) : clientSecret && stripePromise ? (
-            <Elements stripe={stripePromise} options={{ clientSecret, appearance: { theme: 'night', variables: { colorPrimary: '#b4cf52' } } }}>
+            <Elements stripe={stripePromise} options={{ clientSecret, appearance: { theme: 'night', variables: { colorPrimary: '#95e404' } } }}>
               <CheckoutForm onConfirm={onConfirm} amount={totalPrice} />
             </Elements>
           ) : (

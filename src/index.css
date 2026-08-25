@@ -18,7 +18,7 @@
 }
 
 :root {
-  --color-brand-lime: #C6E15A;
+  --color-brand-lime: #95e404;
   --color-brand-dark: #516200;
   
   --color-surface-bg: #f8f6f2;
@@ -31,8 +31,8 @@
 }
 
 .dark {
-  --color-brand-lime: #C6E15A;
-  --color-brand-dark: #d8f566;
+  --color-brand-lime: #95e404;
+  --color-brand-dark: #95e404;
   
   --color-surface-bg: #121212;
   --color-surface-low: #1e1e1e;
