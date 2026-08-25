@@ -12,8 +12,6 @@ import {
 } from 'lucide-react';
 import { Chatbot } from './components/Chatbot';
 import { ReviewCarousel } from './components/ReviewCarousel';
-import frostedImg from './assets/frosted.jpg';
-import onewayImg from './assets/oneway.jpg';
 
 // Initialize Stripe
 const stripePromise = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY 
@@ -575,7 +573,7 @@ function Step1({ onNext, filmCategory, setFilmCategory }: { onNext: () => void, 
           }}
         >
           <div className="w-full aspect-square bg-surface-highest rounded-xl mb-4 overflow-hidden relative">
-             <img src={frostedImg} alt="Frosted" className="w-full h-full object-cover" />
+             <img src="/frosted.jpg" alt="Frosted" className="w-full h-full object-cover" />
              <div className="absolute inset-0 bg-black/10"></div>
           </div>
           <h3 className="font-headline font-bold text-lg mb-2">Frosted</h3>
@@ -589,7 +587,7 @@ function Step1({ onNext, filmCategory, setFilmCategory }: { onNext: () => void, 
           }}
         >
           <div className="w-full aspect-square bg-surface-highest rounded-xl mb-4 overflow-hidden relative">
-            <img src={onewayImg} alt="One Way" className="w-full h-full object-cover" />
+            <img src="/oneway.jpg" alt="One Way" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/10"></div>
           </div>
           <h3 className="font-headline font-bold text-lg mb-2">One-Way</h3>
