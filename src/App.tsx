@@ -279,7 +279,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
             initial={{ opacity: 0, scale: 1.05 }}
             animate={isImageLoaded ? { opacity: 0.6, scale: 1 } : { opacity: 0, scale: 1.05 }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-[25%_center] md:object-center"
             style={{ filter: 'grayscale(30%) contrast(1.1)' }}
             onLoad={() => setIsImageLoaded(true)}
           />
