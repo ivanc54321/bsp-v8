@@ -295,7 +295,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-            className="flex flex-col md:flex-row items-stretch justify-center md:justify-end gap-3 w-full"
+            className="flex flex-row items-stretch justify-center md:justify-end gap-3 w-full"
           >
             <motion.button 
               onClick={onNext} 
@@ -308,9 +308,15 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                 ]
               }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-sm md:text-base py-3 px-6 md:px-8 rounded-full flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(149,228,4,0.3)] w-full md:w-auto tracking-wide uppercase"
+              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-xs md:text-base py-3 px-4 md:px-8 rounded-full flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(149,228,4,0.3)] flex-1 md:flex-none tracking-wide uppercase"
             >
               Get Your Free Quote <ChevronRight size={20} strokeWidth={3} className="shrink-0" />
+            </motion.button>
+            <motion.button 
+              onClick={onOpenChat}
+              className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-xs md:text-base py-3 px-4 md:px-8 rounded-full border border-white/10 flex items-center justify-center gap-1 md:gap-2 shadow-lg hover:bg-black/60 transition-colors flex-1 md:flex-none whitespace-nowrap"
+            >
+              <MessageSquare size={16} className="text-brand-lime shrink-0" /> CHAT WITH US
             </motion.button>
           </motion.div>
 
@@ -384,20 +390,6 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                 </motion.div>
               )}
             </AnimatePresence>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
-            className="w-full flex justify-center md:justify-end mt-2"
-          >
-            <motion.button 
-              onClick={onOpenChat}
-              className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-sm md:text-base py-3 px-4 md:px-6 rounded-xl border border-white/10 flex items-center justify-center gap-1 md:gap-2 shadow-lg hover:bg-black/60 transition-colors w-full md:w-auto whitespace-nowrap"
-            >
-              <MessageSquare size={16} className="text-brand-lime shrink-0" /> CHAT WITH US
-            </motion.button>
           </motion.div>
         </div>
       </div>
