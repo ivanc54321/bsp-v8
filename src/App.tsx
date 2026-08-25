@@ -920,22 +920,23 @@ function InfoCard({ icon, title, desc }: { icon: React.ReactNode, title: string,
 function DesignCard({ title, desc, imgUrl, popular, selected, onSelect }: { title: string, desc: string, imgUrl: string, popular?: boolean, selected?: boolean, onSelect: () => void, key?: string | number }) {
   return (
     <div 
-      className={`bg-surface-bg rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(46,47,44,0.04)] hover:shadow-[0_20px_40px_rgba(198,225,90,0.1)] transition-all duration-500 border-2 flex flex-col group cursor-pointer ${selected ? 'border-brand-lime shadow-[0_0_20px_rgba(180,207,82,0.2)]' : 'border-transparent hover:border-brand-lime/30'}`}
+      className={`bg-[#1c1d1a] rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border-2 flex flex-col group cursor-pointer ${selected ? 'border-brand-lime shadow-[0_0_25px_rgba(180,207,82,0.15)] bg-[#232520]' : 'border-surface-highest/50 hover:border-brand-lime/60'}`}
       onClick={onSelect}
     >
       <div className="aspect-square relative overflow-hidden bg-surface-highest">
-        <img src={imgUrl} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+        <img src={imgUrl} alt={title} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75 group-hover:contrast-125" referrerPolicy="no-referrer" />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500"></div>
         {popular && (
           <div className="absolute top-3 right-3 bg-brand-lime text-black px-2 py-1 rounded-full text-[8px] font-extrabold uppercase tracking-widest shadow-lg">
             Popular
           </div>
         )}
       </div>
-      <div className="p-4 md:p-6 flex flex-col flex-grow">
-        <h3 className="font-headline font-bold text-base md:text-lg mb-2">{title}</h3>
+      <div className="p-4 md:p-6 flex flex-col flex-grow relative z-10">
+        <h3 className="font-headline font-bold text-base md:text-lg mb-2 group-hover:text-brand-lime transition-colors">{title}</h3>
         <p className="font-body text-[10px] md:text-xs text-text-muted mb-4 flex-grow leading-relaxed line-clamp-3">{desc}</p>
-        <button className={`w-full py-2.5 text-xs font-bold rounded-xl transition-all active:scale-95 ${selected ? 'bg-brand-lime text-black shadow-md shadow-brand-lime/20' : 'bg-surface-high text-text-main hover:bg-brand-lime hover:text-black'}`}>
-          {selected ? 'Selected' : 'Select'}
+        <button className={`w-full py-3 text-xs font-bold rounded-xl border border-transparent transition-all active:scale-95 duration-300 ${selected ? 'bg-brand-lime text-black shadow-[0_0_15px_rgba(180,207,82,0.3)]' : 'bg-surface-highest text-text-main hover:bg-brand-lime hover:text-black hover:border-brand-lime hover:shadow-[0_0_15px_rgba(180,207,82,0.2)]'}`}>
+          {selected ? 'Selected' : 'Select Design'}
         </button>
       </div>
     </div>
@@ -953,9 +954,9 @@ function Step2({ filmCategory, selectedDesign, setSelectedDesign, onNext, onBack
   ];
 
   const onewayDesigns = [
-    { title: "Silver Blue", desc: "Sleek metallic blue finish. Excellent heat rejection.", imgUrl: "https://live.staticflickr.com/65535/55185348105_72df732011_b.jpg", popular: true },
-    { title: "Bronze Tan", desc: "Warm bronze reflection. Ideal for traditional architecture.", imgUrl: "https://live.staticflickr.com/65535/55177673305_8bfbda1dec_z.jpg" },
-    { title: "Charcoal Black", desc: "Deep black mirror effect. Maximum glare reduction.", imgUrl: "https://live.staticflickr.com/65535/55177271941_280b8f8fc6_z.jpg" }
+    { title: "Silver Blue", desc: "Sleek metallic blue finish. Excellent heat rejection.", imgUrl: "/blue.jpg", popular: true },
+    { title: "Bronze Tan", desc: "Warm bronze reflection. Ideal for traditional architecture.", imgUrl: "/tea.jpg" },
+    { title: "Charcoal Black", desc: "Deep black mirror effect. Maximum glare reduction.", imgUrl: "/black.jpg" }
   ];
 
   const designs = filmCategory === 'oneway' ? onewayDesigns : frostedDesigns;
