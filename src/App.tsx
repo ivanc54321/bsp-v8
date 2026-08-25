@@ -67,13 +67,6 @@ export default function App() {
         </div>
         <div className="flex items-center gap-2 -mr-2 relative">
           <button 
-            onClick={() => setIsDark(!isDark)} 
-            className="text-brand-dark hover:opacity-70 transition-opacity p-2"
-            aria-label="Toggle Dark Mode"
-          >
-            {isDark ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-brand-dark hover:opacity-70 transition-opacity p-2 relative z-50"
             aria-label="Toggle Menu"
@@ -137,6 +130,12 @@ export default function App() {
                     className="flex items-center gap-3 px-5 py-3 hover:bg-surface-highest/30 transition-colors text-left w-full font-headline font-semibold text-text-main"
                   >
                     <MessageSquare size={18} className="text-brand-lime" /> Chat with Us
+                  </button>
+                  <button 
+                    onClick={() => { setIsDark(!isDark); setIsMenuOpen(false); }}
+                    className="flex items-center gap-3 px-5 py-3 hover:bg-surface-highest/30 transition-colors text-left w-full font-headline font-semibold text-text-main"
+                  >
+                    {isDark ? <Sun size={18} className="text-brand-lime" /> : <Moon size={18} className="text-brand-lime" />} {isDark ? 'Light Mode' : 'Dark Mode'}
                   </button>
                 </motion.div>
               </>
@@ -288,7 +287,7 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
         {/* Background Pattern */}
         <div className="absolute inset-0 z-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
 
-        {/* Animated Header Text (Top Right) */}
+        {/* Animated Header Text & Button (Top Right) */}
         <motion.div 
           initial="hidden"
           animate={isImageLoaded ? "visible" : "hidden"}
@@ -301,94 +300,93 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
               }
             }
           }}
-          className="absolute top-8 right-6 md:top-12 md:right-10 z-20 flex flex-col items-end text-right min-h-[120px]"
+          className="absolute top-2 right-4 md:top-4 md:right-8 z-20 flex flex-col items-end text-right"
         >
-          <AnimatePresence mode="wait">
-            {carouselStep === 0 && (
-              <motion.div 
-                key="glazing"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col items-end"
-              >
-                <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-3 uppercase drop-shadow-md text-right">
-                  Static Glazing<br/>
-                  <span className="text-brand-lime drop-shadow-sm">Installation</span>
-                </h1>
-                <div className="w-16 md:w-24 h-1.5 bg-brand-lime rounded-full mb-3 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
-                <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
-                  Window Privacy Film
-                </h2>
-              </motion.div>
-            )}
-            {carouselStep === 1 && (
-              <motion.div 
-                key="areas"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col items-end"
-              >
-                <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-3 uppercase drop-shadow-md text-right">
-                  Areas <span className="text-brand-lime drop-shadow-sm">Covered</span>
-                </h1>
-                <div className="w-16 md:w-24 h-1.5 bg-brand-lime rounded-full mb-3 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
-                <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
-                  Margate, Broadstairs,<br/>Ramsgate & more
-                </h2>
-              </motion.div>
-            )}
-            {carouselStep === 2 && (
-              <motion.div 
-                key="quick"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col items-end"
-              >
-                <h1 className="font-headline text-3xl md:text-4xl font-black text-white tracking-tight leading-[1.05] mb-3 uppercase drop-shadow-md text-right">
-                  Quick, Free,<br/>
-                  <span className="text-brand-lime drop-shadow-sm">Simple</span>
-                </h1>
-                <div className="w-16 md:w-24 h-1.5 bg-brand-lime rounded-full mb-3 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
-                <h2 className="font-headline text-xs md:text-sm font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
-                  Click To Start
-                </h2>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+          <div className="min-h-[95px] md:min-h-[110px] flex flex-col items-end">
+            <AnimatePresence mode="wait">
+              {carouselStep === 0 && (
+                <motion.div 
+                  key="glazing"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col items-end"
+                >
+                  <h1 className="font-headline text-2xl md:text-3xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md text-right">
+                    Static Glazing<br/>
+                    <span className="text-brand-lime drop-shadow-sm">Installation</span>
+                  </h1>
+                  <div className="w-12 md:w-20 h-1.5 bg-brand-lime rounded-full mb-2 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
+                  <h2 className="font-headline text-[10px] md:text-xs font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
+                    Window Privacy Film
+                  </h2>
+                </motion.div>
+              )}
+              {carouselStep === 1 && (
+                <motion.div 
+                  key="areas"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col items-end"
+                >
+                  <h1 className="font-headline text-2xl md:text-3xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md text-right">
+                    Areas <span className="text-brand-lime drop-shadow-sm">Covered</span>
+                  </h1>
+                  <div className="w-12 md:w-20 h-1.5 bg-brand-lime rounded-full mb-2 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
+                  <h2 className="font-headline text-[10px] md:text-xs font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
+                    Margate, Broadstairs,<br/>Ramsgate & more
+                  </h2>
+                </motion.div>
+              )}
+              {carouselStep === 2 && (
+                <motion.div 
+                  key="quick"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col items-end"
+                >
+                  <h1 className="font-headline text-2xl md:text-3xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md text-right">
+                    Quick, Free,<br/>
+                    <span className="text-brand-lime drop-shadow-sm">Simple</span>
+                  </h1>
+                  <div className="w-12 md:w-20 h-1.5 bg-brand-lime rounded-full mb-2 shadow-[0_0_10px_rgba(149,228,4,0.4)]"></div>
+                  <h2 className="font-headline text-[10px] md:text-xs font-bold text-white/80 tracking-widest uppercase drop-shadow-md text-right">
+                    Click To Start
+                  </h2>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
-        {/* Content Section (Bottom Aligned) */}
-        <div className="relative z-20 flex flex-col items-center md:items-end justify-end w-full gap-5 mt-auto pt-40 md:pt-20">
-          {/* Action Buttons */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-            className="flex flex-row items-stretch justify-center md:justify-end gap-3 w-full"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 }
+            }}
+            className="mt-0"
           >
             <motion.button 
               onClick={onNext} 
               animate={{ 
                 scale: [1, 1.05, 1],
                 boxShadow: [
-                  "0px 8px 20px rgba(149,228,4,0.3)",
-                  "0px 12px 25px rgba(149,228,4,0.6)",
-                  "0px 8px 20px rgba(149,228,4,0.3)"
+                  "0px 6px 15px rgba(149,228,4,0.3)",
+                  "0px 10px 20px rgba(149,228,4,0.6)",
+                  "0px 6px 15px rgba(149,228,4,0.3)"
                 ]
               }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-xs md:text-base px-4 md:px-8 rounded-xl border border-transparent flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(149,228,4,0.3)] w-[60%] md:w-auto tracking-wide uppercase h-[56px] md:h-[64px]"
+              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-[9px] md:text-[10px] px-2 md:px-4 rounded-xl border border-transparent flex items-center justify-center gap-1 shadow-[0_6px_15px_rgba(149,228,4,0.3)] w-36 md:w-44 h-10 md:h-12 tracking-wide uppercase"
             >
-              Get Your Free Quote <ChevronRight size={20} strokeWidth={3} className="shrink-0" />
+              Get Your Free Quote <ChevronRight size={14} strokeWidth={3} className="shrink-0" />
             </motion.button>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       <div className="px-6 pb-20">
