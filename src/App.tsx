@@ -224,20 +224,53 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
         {/* Background Pattern */}
         <div className="absolute inset-0 z-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
 
+        {/* Action Buttons */}
         <motion.div 
-          initial="hidden"
-          animate={isImageLoaded ? "visible" : "hidden"}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.3
-              }
-            }
-          }}
-          className="relative z-10 flex flex-col items-end text-right w-full -mt-12 min-h-[120px]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+          className="absolute top-[45%] left-6 z-20 flex flex-wrap justify-start gap-3 w-auto"
         >
+          <motion.button 
+            onClick={onNext} 
+            animate={{ 
+              boxShadow: [
+                "0px 8px 20px rgba(180,207,82,0.3)",
+                "0px 12px 25px rgba(180,207,82,0.5)",
+                "0px 8px 20px rgba(180,207,82,0.3)"
+              ]
+            }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="bg-brand-lime text-black font-headline font-extrabold text-sm py-2.5 px-5 rounded-xl hover:bg-[#b4cf52] border border-white/20 flex items-center justify-center gap-2 shadow-lg"
+          >
+            Start Quote <ArrowRight size={16} />
+          </motion.button>
+  
+          <motion.button 
+            onClick={onOpenChat}
+            className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-sm py-2.5 px-5 rounded-xl border border-white/10 flex items-center justify-center gap-2 shadow-lg hover:bg-black/60 transition-colors"
+          >
+            <MessageSquare size={16} className="text-brand-lime" /> CHAT WITH US
+          </motion.button>
+        </motion.div>
+
+        {/* Top Content Row */}
+        <div className="relative z-20 flex justify-end items-start w-full gap-4">
+          {/* Animated Header Text */}
+          <motion.div 
+            initial="hidden"
+            animate={isImageLoaded ? "visible" : "hidden"}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.2,
+                  delayChildren: 0.3
+                }
+              }
+            }}
+            className="flex flex-col items-start md:items-end text-left md:text-right w-full md:w-auto min-h-[120px]"
+          >
           <AnimatePresence mode="wait">
             {!showAreas ? (
               <motion.div 
@@ -275,41 +308,8 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
             )}
           </AnimatePresence>
         </motion.div>
+        </div>
       </div>
-
-      {/* Floating Buttons */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-        className="flex justify-center gap-3 relative z-20 mb-10 px-6"
-      >
-        <motion.button 
-          onClick={onNext} 
-          animate={{ 
-            boxShadow: [
-              "0px 8px 20px rgba(180,207,82,0.3)",
-              "0px 12px 25px rgba(180,207,82,0.5)",
-              "0px 8px 20px rgba(180,207,82,0.3)"
-            ]
-          }}
-          transition={{ 
-            duration: 2, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-          className="bg-brand-lime text-black font-headline font-extrabold text-sm py-3 px-6 rounded-xl hover:bg-[#b4cf52] border border-white/20 flex items-center justify-center gap-2 flex-1 shadow-lg"
-        >
-          Start Quote <ArrowRight size={18} />
-        </motion.button>
-
-        <motion.button 
-          onClick={onOpenChat}
-          className="bg-surface-bg text-text-main font-headline font-bold text-sm py-3 px-5 rounded-xl border border-surface-highest flex items-center justify-center gap-2 shadow-lg hover:bg-surface-highest transition-colors"
-        >
-          <MessageSquare size={18} className="text-brand-lime" /> CHAT WITH US
-        </motion.button>
-      </motion.div>
 
       {/* Trust/Reviews Carousel */}
       <ReviewCarousel />
