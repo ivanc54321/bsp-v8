@@ -308,13 +308,13 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                 ]
               }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-xs md:text-base py-3 px-4 md:px-8 rounded-full flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(149,228,4,0.3)] flex-1 md:flex-none tracking-wide uppercase"
+              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-xs md:text-base px-4 md:px-8 rounded-xl border border-transparent flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(149,228,4,0.3)] flex-1 md:flex-none tracking-wide uppercase h-[56px] md:h-[64px]"
             >
               Get Your Free Quote <ChevronRight size={20} strokeWidth={3} className="shrink-0" />
             </motion.button>
             <motion.button 
               onClick={onOpenChat}
-              className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-xs md:text-base py-3 px-4 md:px-8 rounded-full border border-white/10 flex items-center justify-center gap-1 md:gap-2 shadow-lg hover:bg-black/60 transition-colors flex-1 md:flex-none whitespace-nowrap"
+              className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-xs md:text-base px-4 md:px-8 rounded-xl border border-white/10 flex items-center justify-center gap-1 md:gap-2 shadow-lg hover:bg-black/60 transition-colors flex-1 md:flex-none whitespace-nowrap h-[56px] md:h-[64px]"
             >
               <MessageSquare size={16} className="text-brand-lime shrink-0" /> CHAT WITH US
             </motion.button>
