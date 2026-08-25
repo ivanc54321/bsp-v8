@@ -380,15 +380,9 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                 ]
               }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-xs md:text-base px-4 md:px-8 rounded-xl border border-transparent flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(149,228,4,0.3)] flex-1 md:flex-none tracking-wide uppercase h-[56px] md:h-[64px]"
+              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-xs md:text-base px-4 md:px-8 rounded-xl border border-transparent flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(149,228,4,0.3)] w-[60%] md:w-auto tracking-wide uppercase h-[56px] md:h-[64px]"
             >
               Get Your Free Quote <ChevronRight size={20} strokeWidth={3} className="shrink-0" />
-            </motion.button>
-            <motion.button 
-              onClick={onOpenChat}
-              className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-xs md:text-base px-4 md:px-8 rounded-xl border border-white/10 flex items-center justify-center gap-1 md:gap-2 shadow-lg hover:bg-black/60 transition-colors flex-1 md:flex-none whitespace-nowrap h-[56px] md:h-[64px]"
-            >
-              <MessageSquare size={16} className="text-brand-lime shrink-0" /> CHAT WITH US
             </motion.button>
           </motion.div>
         </div>
@@ -495,15 +489,27 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
           </motion.div>
         </div>
 
-        <motion.button 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
-          onClick={onNext} 
-          className="w-full bg-gradient-to-r from-[#1a1a1a] to-[#95e404] text-white font-headline font-extrabold text-xl py-4 rounded-full border-[6px] border-brand-lime shadow-[0_10px_30px_rgba(149,228,4,0.4)] hover:shadow-[0_15px_40px_rgba(149,228,4,0.6)] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2 mb-8 tracking-wide"
-        >
-          START YOUR PRECISION QUOTE <ChevronRight size={24} strokeWidth={3} />
-        </motion.button>
+        <div className="flex flex-col gap-4 mb-8">
+          <motion.button 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+            onClick={onNext} 
+            className="w-[60%] mx-auto bg-gradient-to-r from-[#1a1a1a] to-[#95e404] text-white font-headline font-extrabold text-xl py-4 rounded-full border-[6px] border-brand-lime shadow-[0_10px_30px_rgba(149,228,4,0.4)] hover:shadow-[0_15px_40px_rgba(149,228,4,0.6)] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2 tracking-wide"
+          >
+            START YOUR PRECISION QUOTE <ChevronRight size={24} strokeWidth={3} />
+          </motion.button>
+
+          <motion.button 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.3, ease: "easeOut" }}
+            onClick={onOpenChat}
+            className="w-full bg-surface-low text-white font-headline font-bold text-base py-4 rounded-full border-2 border-surface-highest flex items-center justify-center gap-2 shadow-lg hover:bg-surface-highest transition-colors active:scale-95"
+          >
+            <MessageSquare size={18} className="text-brand-lime shrink-0" /> CHAT WITH US
+          </motion.button>
+        </div>
 
         {/* Trust/Reviews Carousel */}
         <ReviewCarousel />
