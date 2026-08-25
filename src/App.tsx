@@ -290,36 +290,6 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
 
         {/* Content Section (Bottom Aligned) */}
         <div className="relative z-20 flex flex-col items-center md:items-end justify-end w-full gap-5 mt-auto pt-40 md:pt-20">
-          {/* Action Buttons */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-            className="flex flex-row items-stretch justify-center md:justify-end gap-3 w-full"
-          >
-            <motion.button 
-              onClick={onNext} 
-              animate={{ 
-                scale: [1, 1.05, 1],
-                boxShadow: [
-                  "0px 8px 20px rgba(149,228,4,0.3)",
-                  "0px 12px 25px rgba(149,228,4,0.6)",
-                  "0px 8px 20px rgba(149,228,4,0.3)"
-                ]
-              }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-xs md:text-base px-4 md:px-8 rounded-xl border border-transparent flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(149,228,4,0.3)] flex-1 md:flex-none tracking-wide uppercase h-[56px] md:h-[64px]"
-            >
-              Get Your Free Quote <ChevronRight size={20} strokeWidth={3} className="shrink-0" />
-            </motion.button>
-            <motion.button 
-              onClick={onOpenChat}
-              className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-xs md:text-base px-4 md:px-8 rounded-xl border border-white/10 flex items-center justify-center gap-1 md:gap-2 shadow-lg hover:bg-black/60 transition-colors flex-1 md:flex-none whitespace-nowrap h-[56px] md:h-[64px]"
-            >
-              <MessageSquare size={16} className="text-brand-lime shrink-0" /> CHAT WITH US
-            </motion.button>
-          </motion.div>
-
           {/* Animated Header Text */}
           <motion.div 
             initial="hidden"
@@ -390,6 +360,36 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                 </motion.div>
               )}
             </AnimatePresence>
+          </motion.div>
+
+          {/* Action Buttons */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+            className="flex flex-row items-stretch justify-center md:justify-end gap-3 w-full"
+          >
+            <motion.button 
+              onClick={onNext} 
+              animate={{ 
+                scale: [1, 1.05, 1],
+                boxShadow: [
+                  "0px 8px 20px rgba(149,228,4,0.3)",
+                  "0px 12px 25px rgba(149,228,4,0.6)",
+                  "0px 8px 20px rgba(149,228,4,0.3)"
+                ]
+              }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="bg-gradient-to-r from-black to-brand-lime text-white font-headline font-extrabold text-xs md:text-base px-4 md:px-8 rounded-xl border border-transparent flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(149,228,4,0.3)] flex-1 md:flex-none tracking-wide uppercase h-[56px] md:h-[64px]"
+            >
+              Get Your Free Quote <ChevronRight size={20} strokeWidth={3} className="shrink-0" />
+            </motion.button>
+            <motion.button 
+              onClick={onOpenChat}
+              className="bg-black/40 backdrop-blur-md text-white font-headline font-bold text-xs md:text-base px-4 md:px-8 rounded-xl border border-white/10 flex items-center justify-center gap-1 md:gap-2 shadow-lg hover:bg-black/60 transition-colors flex-1 md:flex-none whitespace-nowrap h-[56px] md:h-[64px]"
+            >
+              <MessageSquare size={16} className="text-brand-lime shrink-0" /> CHAT WITH US
+            </motion.button>
           </motion.div>
         </div>
       </div>
