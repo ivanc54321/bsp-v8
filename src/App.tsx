@@ -14,6 +14,10 @@ import { Chatbot } from './components/Chatbot';
 import { ReviewCarousel } from './components/ReviewCarousel';
 import onewayImg from './assets/images/regenerated_image_1787659960840.webp';
 
+import blueImg from './assets/blue.jpg';
+import teaImg from './assets/tea.jpg';
+import blackImg from './assets/black.jpg';
+
 // Initialize Stripe
 const stripePromise = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY 
   ? loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY) 
@@ -963,9 +967,9 @@ function Step2({ filmCategory, selectedDesign, setSelectedDesign, onNext, onBack
   ];
 
   const onewayDesigns = [
-    { title: "Silver Blue", desc: "Sleek metallic blue finish. Excellent heat rejection.", imgUrl: "/blue.jpg", popular: true },
-    { title: "Bronze Tan", desc: "Warm bronze reflection. Ideal for traditional architecture.", imgUrl: "/tea.jpg" },
-    { title: "Charcoal Black", desc: "Deep black mirror effect. Maximum glare reduction.", imgUrl: "/black.jpg" }
+    { title: "Silver Blue", desc: "Sleek metallic blue finish. Excellent heat rejection.", imgUrl: blueImg, popular: true },
+    { title: "Bronze Tan", desc: "Warm bronze reflection. Ideal for traditional architecture.", imgUrl: teaImg },
+    { title: "Charcoal Black", desc: "Deep black mirror effect. Maximum glare reduction.", imgUrl: blackImg }
   ];
 
   const designs = filmCategory === 'oneway' ? onewayDesigns : frostedDesigns;
