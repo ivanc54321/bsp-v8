@@ -11,6 +11,7 @@ import {
   Moon, Sun, Phone, MessageSquare, Briefcase, Play, CreditCard
 } from 'lucide-react';
 import { Chatbot } from './components/Chatbot';
+import { ReviewCarousel } from './components/ReviewCarousel';
 
 // Initialize Stripe
 const stripePromise = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY 
@@ -192,6 +193,14 @@ function ProgressBar({ step, total, label }: { step: number, total: number, labe
 function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => void }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [showAreas, setShowAreas] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowAreas(prev => !prev);
+    }, 2500); // toggle every 2.5 seconds
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="flex flex-col -mt-8 -mx-6">
@@ -227,88 +236,45 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
               }
             }
           }}
-          className="relative z-10 flex flex-col items-center text-center mt-4"
+          className="relative z-10 flex flex-col items-end text-right w-full -mt-12 min-h-[120px]"
         >
-          <motion.h1 
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-            }}
-            className="font-headline text-3xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md"
-          >
-            Static Glazing<br/>
-            <span className="text-brand-lime drop-shadow-sm">Installation</span>
-          </motion.h1>
-          <motion.h2 
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-            }}
-            className="font-headline text-xs font-bold text-white/80 tracking-widest uppercase mb-4 drop-shadow-md"
-          >
-            Window Privacy Film
-          </motion.h2>
-        </motion.div>
-      </div>
-
-      {/* Areas Covered Animation */}
-      <div className="relative z-10 -mt-24 mb-10 flex justify-center px-6">
-        <motion.button 
-          whileHover={{ scale: 1.02, y: -2 }}
-          whileTap={{ scale: 0.98 }}
-          className="relative group overflow-hidden bg-gradient-to-b from-black/80 to-black/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] rounded-2xl py-4 px-6 flex flex-col items-center gap-1.5 max-w-sm w-full cursor-pointer"
-        >
-          {/* Shimmer effect */}
-          <motion.div 
-            className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg]"
-            animate={{ translateX: ['-100%', '200%'] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
-          />
-          
-          <motion.div 
-            initial={{ opacity: 0, y: -5 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
-            className="flex items-center gap-2"
-          >
-            <span className="relative flex h-2 w-2 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-lime opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-lime"></span>
-            </span>
-            <span className="text-brand-lime font-headline font-bold text-[10px] tracking-widest uppercase">
-              Areas Covered
-            </span>
-          </motion.div>
-          
-          <div className="flex flex-wrap justify-center gap-x-2 mt-1">
-            {['Broadstairs,', 'Margate,', 'Ramsgate.'].map((word, i) => (
-              <motion.span
-                key={word}
-                initial={{ opacity: 0, y: 10 }}
+          <AnimatePresence mode="wait">
+            {!showAreas ? (
+              <motion.div 
+                key="glazing"
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.9 + (i * 0.15) }}
-                className="text-white font-headline font-bold text-sm tracking-wider"
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-end"
               >
-                {word}
-              </motion.span>
-            ))}
-          </div>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 1.6 }}
-            className="mt-1"
-          >
-            <motion.span
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="text-brand-lime/80 font-headline font-bold text-[10px] tracking-widest uppercase flex items-center gap-1"
-            >
-              More coming soon <ArrowRight size={10} className="inline" />
-            </motion.span>
-          </motion.div>
-        </motion.button>
+                <h1 className="font-headline text-3xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
+                  Static Glazing<br/>
+                  <span className="text-brand-lime drop-shadow-sm">Installation</span>
+                </h1>
+                <h2 className="font-headline text-xs font-bold text-white/80 tracking-widest uppercase mb-4 drop-shadow-md">
+                  Window Privacy Film
+                </h2>
+              </motion.div>
+            ) : (
+              <motion.div 
+                key="areas"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-end"
+              >
+                <h1 className="font-headline text-3xl font-black text-white tracking-tight leading-[1.05] mb-2 uppercase drop-shadow-md">
+                  Areas <span className="text-brand-lime drop-shadow-sm">Covered</span>
+                </h1>
+                <h2 className="font-headline text-xs font-bold text-white/80 tracking-widest uppercase mb-4 drop-shadow-md">
+                  Margate, Broadstairs, Ramsgate & more
+                </h2>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
       {/* Floating Buttons */}
@@ -344,6 +310,9 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
           <MessageSquare size={18} className="text-brand-lime" /> CHAT WITH US
         </motion.button>
       </motion.div>
+
+      {/* Trust/Reviews Carousel */}
+      <ReviewCarousel />
 
       <div className="px-6 pb-20">
         <motion.h3 
@@ -401,20 +370,6 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
             className="relative z-10 flex items-start gap-5"
           >
             <div className="w-10 h-10 rounded-full bg-surface-high border-2 border-brand-lime flex items-center justify-center font-headline font-bold text-brand-lime shrink-0 shadow-[0_0_15px_rgba(180,207,82,0.15)]">1</div>
-            <div className="pt-2">
-              <p className="font-bold text-base text-white mb-1">MEASUREMENT</p>
-              <p className="text-sm text-text-muted">Input Dimensions (W/H, cm)</p>
-            </div>
-          </motion.div>
-
-          {/* Step 2 */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.9 }}
-            className="relative z-10 flex items-start gap-5"
-          >
-            <div className="w-10 h-10 rounded-full bg-surface-high border-2 border-brand-lime flex items-center justify-center font-headline font-bold text-brand-lime shrink-0 shadow-[0_0_15px_rgba(180,207,82,0.15)]">2</div>
             <div className="pt-2 w-full">
               <p className="font-bold text-base text-white mb-3">SELECT DESIGN</p>
               <div className="flex gap-3">
@@ -428,6 +383,20 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
                   <img src="https://i.ibb.co/wNz9X34w/Untitled-3.png" alt="Brick" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                 </div>
               </div>
+            </div>
+          </motion.div>
+
+          {/* Step 2 */}
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.9 }}
+            className="relative z-10 flex items-start gap-5"
+          >
+            <div className="w-10 h-10 rounded-full bg-surface-high border-2 border-brand-lime flex items-center justify-center font-headline font-bold text-brand-lime shrink-0 shadow-[0_0_15px_rgba(180,207,82,0.15)]">2</div>
+            <div className="pt-2">
+              <p className="font-bold text-base text-white mb-1">MEASUREMENT</p>
+              <p className="text-sm text-text-muted">Input Dimensions (W/H, cm)</p>
             </div>
           </motion.div>
 
