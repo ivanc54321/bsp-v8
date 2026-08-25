@@ -371,16 +371,17 @@ function Step0({ onNext, onOpenChat }: { onNext: () => void, onOpenChat: () => v
             <motion.button 
               onClick={onNext} 
               animate={{ 
+                scale: [1, 1.05, 1],
                 boxShadow: [
                   "0px 8px 20px rgba(180,207,82,0.3)",
-                  "0px 12px 25px rgba(180,207,82,0.5)",
+                  "0px 12px 25px rgba(180,207,82,0.6)",
                   "0px 8px 20px rgba(180,207,82,0.3)"
                 ]
               }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               className="bg-brand-lime text-black font-headline font-extrabold text-sm md:text-base py-3 px-4 md:px-6 rounded-xl hover:bg-[#b4cf52] border border-white/20 flex items-center justify-center gap-1 md:gap-2 shadow-lg flex-1 md:flex-none"
             >
-              Start Quote <ArrowRight size={16} className="shrink-0" />
+              Get Your Free Quote <ArrowRight size={16} className="shrink-0" />
             </motion.button>
     
             <motion.button 
@@ -572,7 +573,7 @@ function Step1({ onNext, filmCategory, setFilmCategory }: { onNext: () => void, 
           }}
         >
           <div className="w-full aspect-square bg-surface-highest rounded-xl mb-4 overflow-hidden relative">
-             <img src="https://i.ibb.co/vvjtVcjV/stripe.png" alt="Frosted" className="w-full h-full object-cover" />
+             <img src="/frosted.jpg" alt="Frosted" className="w-full h-full object-cover" />
              <div className="absolute inset-0 bg-black/10"></div>
           </div>
           <h3 className="font-headline font-bold text-lg mb-2">Frosted</h3>
@@ -586,7 +587,7 @@ function Step1({ onNext, filmCategory, setFilmCategory }: { onNext: () => void, 
           }}
         >
           <div className="w-full aspect-square bg-surface-highest rounded-xl mb-4 overflow-hidden relative">
-            <img src="https://live.staticflickr.com/65535/55185348105_72df732011_b.jpg" alt="One Way" className="w-full h-full object-cover" />
+            <img src="/one-way .jpg" alt="One Way" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/10"></div>
           </div>
           <h3 className="font-headline font-bold text-lg mb-2">One-Way</h3>
@@ -840,6 +841,36 @@ function Step3({ onNext, onBack, windowCount, setWindowCount, privacyLevel, setP
       {/* Counter */}
       <div className="bg-surface-low p-6 rounded-[2rem] mb-10">
         <label className="block font-bold text-xs mb-4 text-center">Number of Windows</label>
+        
+        {/* Visual representation of windows */}
+        <div className="flex flex-wrap justify-center gap-2 mb-6 min-h-[40px]">
+          <AnimatePresence>
+            {Array.from({ length: Math.min(windowCount, 12) }).map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.5, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.5, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="w-7 h-10 bg-brand-lime/20 border border-brand-lime rounded-[4px] flex flex-col relative overflow-hidden shadow-[0_0_10px_rgba(180,207,82,0.1)]"
+              >
+                {/* Window grid lines */}
+                <div className="absolute inset-x-0 top-1/2 h-[1px] bg-brand-lime/40 -translate-y-1/2"></div>
+                <div className="absolute inset-y-0 left-1/2 w-[1px] bg-brand-lime/40 -translate-x-1/2"></div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+          {windowCount > 12 && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="w-7 h-10 flex items-center justify-center font-bold text-brand-lime text-xs"
+            >
+              +{windowCount - 12}
+            </motion.div>
+          )}
+        </div>
+
         <div className="flex items-center justify-between bg-surface-bg rounded-full p-2 border border-surface-highest/50">
           <button onClick={() => setWindowCount(Math.max(1, windowCount - 1))} className="w-10 h-10 flex items-center justify-center bg-surface-high rounded-full hover:bg-surface-highest transition-colors active:scale-95">
             <Minus size={18} />
